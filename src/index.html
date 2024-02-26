@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="./css/style.css">
+      <title>Noelia Miranda</title>
+   </head>
+   <body>
+      <header>
+         <h1>Noelia Miranda</h1>
+         <nav>
+            <ul>
+               <li><a href="index.html">Home</a></li>
+               <li><a href="about.html">About</a></li>
+               <li><a href="contact.html">Contact</a></li>
+            </ul>
+         </nav>
+         <div class="window">
+            <div class="title-bar">
+               <div class="title">Your Window Title</div>
+               <div class="buttons">
+                  <div class="button minimize"></div>
+                  <div class="button close"></div>
+               </div>
+            </div>
+            <div class="content markdown="1">
+               <p># This is the content of your window.</p>
+            </div>
+         </div>
+         <button onclick="toggleDarkTheme()">Toggle Dark Theme</button>
+      </header>
+      <main>
+         <h2>Welcome to my website</h2>
+         <p>This is a simple website to show my skills as a web developer.</p>
+         <div class="window">
+            <div class="title-bar">
+               <div class="title">Your Window Title</div>
+               <div class="buttons">
+                  <div class="button minimize"></div>
+                  <div class="button close"></div>
+               </div>
+            </div>
+            <div class="content markdown="1">
+               <p># This is the content of your window.</p>
+            </div>
+         </div>
+      </main>
+      <footer>
+         <p>&copy; 2024 Noelia Miranda</p>
+      </footer>
+      <script>
+         function toggleDarkTheme() {
+           const body = document.querySelector('body');
+           if (body.classList.contains('dark-theme')) {
+             body.classList.remove('dark-theme');
+             body.classList.add('light-theme');
+           } else {
+             body.classList.add('dark-theme');
+             body.classList.remove('light-theme');
+           }
+         }
+         
+         // Set default theme based on system setting
+         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+         document.body.classList.add('dark-theme');
+         } else {
+         document.body.classList.add('light-theme');
+         }
+      </script>
+   </body>
+</html>
