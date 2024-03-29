@@ -3,19 +3,24 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="./css/style.css">
+      <link rel="stylesheet" href="./css/output.css">
       <title>Noelia Miranda</title>
    </head>
    <body>
       <header>
-         <h1>Noelia Miranda</h1>
-         <nav>
-            <ul>
+         <nav class="flex flex-row">
+            <span class="basis-2/5 text-2xl">noelia:~$</span>
+            <ul class="basis-3/5 flex flex-row justify-between">
                <li><a href="index.html">Home</a></li>
                <li><a href="about.html">About</a></li>
                <li><a href="contact.html">Contact</a></li>
+               <li><button onclick="toggleDarkTheme()">Toggle Dark Theme</button></li>
             </ul>
          </nav>
+      </header>
+      <main class="my-20 self-center flex-grow lg:my-32 ">
+         <h2>Welcome to my website</h2>
+         <p>This is a simple website to show my skills as a web developer.</p>
          <div class="window">
             <div class="title-bar">
                <div class="title">Your Window Title</div>
@@ -28,11 +33,6 @@
                <p># This is the content of your window.</p>
             </div>
          </div>
-         <button onclick="toggleDarkTheme()">Toggle Dark Theme</button>
-      </header>
-      <main>
-         <h2>Welcome to my website</h2>
-         <p>This is a simple website to show my skills as a web developer.</p>
          <div class="window">
             <div class="title-bar">
                <div class="title">Your Window Title</div>
