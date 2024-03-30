@@ -15,14 +15,6 @@ body {
   to { background-position: 300px 300px;}
 }
 
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-}
 
 footer {
   position: fixed;
@@ -85,15 +77,19 @@ body.dark-theme {
 }
 
 @media (prefers-color-scheme: dark) {
-body:not(.light-theme) {
-  background: url(../images/bg-dark.png);
-  color: #fff;
-}
+  html:is(.dark) {
+    body{
+      background: url(../images/bg-dark.png);
+    color: #fff;
+    } 
+  }
 }
 
 @media (prefers-color-scheme: light) {
-body:not(.dark-theme) {
-  background: url(../images/bg-light.png);
-  color: #222;
-}
+  html:not(.dark) {
+    body{
+      background: url(../images/bg-light.png);
+      color: #222;
+    }
+  }
 }
