@@ -25,14 +25,14 @@ footer {
 
 
 body.dark-theme {
-  background: url(../images/bg-dark.png);
+  background: url(../images/bg-dark-2.png);
   color: white;
 }
 
 @media (prefers-color-scheme: dark) {
   html:is(.dark) {
     body{
-      background: url(../images/bg-dark.png);
+      background: url(../images/bg-dark-2.png);
     color: #fff;
     } 
   }
