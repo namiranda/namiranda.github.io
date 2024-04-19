@@ -5,7 +5,7 @@ date: "Mar 14 2024"
 ---
 Here is one way to find which tables in a schema contain a certain column name in MYSQL.
 
-```mysql
+```sql
 SELECT COLUMN_NAME, TABLE_NAME
 FROM INFORMATION_SCHEMA.COLUMNS
 WHERE COLUMN_NAME like '%mail%'

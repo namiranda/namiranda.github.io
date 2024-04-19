@@ -6,7 +6,7 @@ date: "Feb 22 2024"
 To recover a deleted branch we just need the SHA value of the commit to which the branch pointed when it was deleted.
 A useful command to do this is 
 
-```git
+```bash
 git reflog 
 ```
 This prints the logs of when the tips of branches and other references were updated in the local repository.

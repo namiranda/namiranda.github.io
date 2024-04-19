@@ -6,6 +6,8 @@ const til = defineCollection({
     title: z.string(),
     tags: z.array(z.string()),
     date: z.coerce.date(),
+    draft: z.boolean().optional(),
+    description: z.string().optional(),
   }),
 });
 
