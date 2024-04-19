@@ -36,14 +36,12 @@ body {
 
 body.dark-theme {
   background: url(../../bg-dark-2.png);
-  color: white;
 }
 
 @media (prefers-color-scheme: dark) {
   html:is(.dark) {
     body{
       background: url(../../bg-dark-2.png);
-    color: #fff;
     } 
   }
 }
@@ -59,8 +57,8 @@ body.dark-theme {
 
 header {
   @apply fixed top-0 left-0 right-0 z-50 py-5;
-  @apply bg-stone-100/75 dark:bg-stone-900/25;
-  @apply backdrop-blur-sm saturate-200;
+  @apply bg-stone-100/25 dark:bg-stone-900/25;
+  @apply backdrop-blur-sm dark:saturate-200;
 }
 
 main {
