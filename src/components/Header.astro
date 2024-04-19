@@ -2,9 +2,11 @@
 import Container from "@components/Container.astro";
 import Link from "@components/Link.astro";
 import { SITE } from "@consts";
+import { GoogleAnalytics } from 'astro-analytics';
 ---
 
 <header>
+  <GoogleAnalytics id="G-L7LP5MQ2L1" />
   <Container>
     <div class="flex flex-wrap gap-y-2 justify-between">
       <Link href="/" underline={false}>
