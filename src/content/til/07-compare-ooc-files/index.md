@@ -1,5 +1,5 @@
 ---
-title: "Compare out-of-context file using IntelliJ IDEA"
+title: "Compare out-of-context files using IntelliJ IDEA"
 tags: ["tools", "IDE"]
 date: "Jul 2 2024"
 ---
