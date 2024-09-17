@@ -7,7 +7,7 @@ The `COALESCE` function in SQL is useful when you want to take a value but use a
 
 For example:
 
-```SQL
+```sql
 SELECT symbol FROM currency c
 WHERE c.currency_id = COALESCE(payment.currency_id, 1)
 ```
