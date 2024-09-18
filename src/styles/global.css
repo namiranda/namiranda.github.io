@@ -35,13 +35,13 @@ body {
 }
 
 body.dark-theme {
-  background: url(../../bg-dark-3.png);
+  background: url(../../bg-dark-4.png);
 }
 
 @media (prefers-color-scheme: dark) {
   html:is(.dark) {
     body{
-      background: url(../../bg-dark-3.png);
+      background: url(../../bg-dark-4.png);
     } 
   }
 }
