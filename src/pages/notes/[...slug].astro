@@ -1,0 +1,49 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { formatDate, getNotes } from "../../lib/notes";
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return notes.map(note => ({ params: { slug: note.id }, props: { note } }));
+}
+
+interface Props {
+  note: CollectionEntry<"notes">;
+}
+
+const { note } = Astro.props;
+const { Content } = await render(note);
+const minutes = Math.max(1, Math.round((note.body ?? "").split(/\s+/).length / 200));
+---
+
+<Base title={note.data.title} description={note.data.description}>
+  <article>
+    <a class="back label" href="/notes/">← all notes</a>
+    <header>
+      <h1>{note.data.title}</h1>
+      <p class="meta label">
+        <time datetime={note.data.date.toISOString()}>{formatDate(note.data.date, "long")}</time> · {minutes} min read
+      </p>
+      <ul class="tags" aria-label="Tags">
+        {note.data.tags.map(tag => <li>#{tag.toLowerCase()}</li>)}
+      </ul>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  article { padding-top: 40px; }
+  .back { text-decoration: none; padding: 2px 6px; margin-left: -6px; }
+  .back:hover { background: var(--fg); color: var(--bg); }
+  header { margin: 20px 0 32px; padding-bottom: 20px; border-bottom: 2px solid var(--fg); }
+  h1 { font: 600 32px/1.15 var(--pixel); margin: 0 0 10px; }
+  .meta { margin: 0 0 8px; }
+
+  @media (max-width: 560px) {
+    h1 { font-size: 26px; }
+  }
+</style>

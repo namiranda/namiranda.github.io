@@ -1,39 +1,42 @@
-import type { Site, Metadata, Socials } from "@types";
+// Everything you'd want to edit on the site lives here.
 
-export const SITE: Site = {
-  NAME: "noelia:~$",
-  EMAIL: "naylenmiranda@gmail.com",
-  NUM_POSTS_ON_HOMEPAGE: 3,
-  NUM_PROJECTS_ON_HOMEPAGE: 3,
-};
-
-export const HOME: Metadata = {
+export const SITE = {
+  NAME: "Noelia Miranda",
   TITLE: "Noelia Miranda",
-  DESCRIPTION: "Welcome to my personal website. I am a software engineer and I love to build things.",
+  DESCRIPTION: "Software engineer from Córdoba, Argentina. Backend, notes and a bit of me.",
+  EMAIL: "naylenmiranda@gmail.com",
+  NOTES_ON_HOMEPAGE: 3,
 };
 
-export const TIL: Metadata = {
-  TITLE: "til",
-  DESCRIPTION: "A collection of articles on topics I am passionate about.",
+export const NOTES = {
+  TITLE: "Notes",
+  DESCRIPTION: "Short notes on things I run into while building software.",
 };
 
-export const BOOKS: Metadata = {
-  TITLE: "Books",
-  DESCRIPTION: "A collection of books I have read, with reviews and ratings.",
-};
+// The first link is drawn as the "default" button.
+export const SOCIALS = [
+  { NAME: "LinkedIn", HREF: "https://www.linkedin.com/in/noelia-a-miranda/" },
+  { NAME: "GitHub", HREF: "https://github.com/namiranda" },
+  { NAME: "Email", HREF: `mailto:${SITE.EMAIL}` },
+];
 
-export const PROJECTS: Metadata = {
-  TITLE: "Projects",
-  DESCRIPTION: "A collection of my projects, with links to repositories and demos.",
-};
+// TODO: replace the [bracketed] placeholders before merging.
+export const NOW = [
+  { LABEL: "working on", TEXT: "Backend services at Mercado Libre — [what area / team?]" },
+  { LABEL: "learning", TEXT: "[e.g. how I'm folding AI tools into my day-to-day]" },
+  { LABEL: "reading", TEXT: "[a book you're into]" },
+  { LABEL: "away from keys", TEXT: "[a hobby or two]" },
+];
 
-export const SOCIALS: Socials = [
-  { 
-    NAME: "github",
-    HREF: "https://github.com/namiranda"
+export const EXPERIENCE = [
+  {
+    WHEN: "20XX — now",
+    ROLE: "Software Engineer · Mercado Libre",
+    WHAT: "[One line on what you build and one concrete thing you're proud of.]",
   },
-  { 
-    NAME: "linkedin",
-    HREF: "https://www.linkedin.com/in/noelia-a-miranda/",
-  }
+  {
+    WHEN: "20XX — 20XX",
+    ROLE: "[Previous role · Company]",
+    WHAT: "[Short summary.]",
+  },
 ];

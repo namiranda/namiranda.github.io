@@ -1,9 +1,18 @@
 import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
   site: "https://noeliamiranda.dev",
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [sitemap()],
+  // "Today I Learned" became "Notes": keep the old links working
+  redirects: {
+    "/til": "/notes",
+    "/til/[...slug]": "/notes/[...slug]",
+  },
+  markdown: {
+    shikiConfig: {
+      themes: { light: "min-light", dark: "min-dark" },
+      defaultColor: false,
+    },
+  },
 });

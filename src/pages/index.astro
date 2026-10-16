@@ -1,64 +1,79 @@
 ---
-import { getCollection } from "astro:content";
-import Container from "@components/Container.astro";
-import PageLayout from "@layouts/PageLayout.astro";
-import ArrowCard from "@components/ArrowCard.astro";
-import Link from "@components/Link.astro";
-import { SITE, HOME, SOCIALS } from "@consts";
+import Base from "../layouts/Base.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import NoteList from "../components/NoteList.astro";
+import { SITE, SOCIALS, NOW, EXPERIENCE } from "../consts";
+import { getNotes } from "../lib/notes";
 
-const til = (await getCollection("til"))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_POSTS_ON_HOMEPAGE);
+const notes = (await getNotes()).slice(0, SITE.NOTES_ON_HOMEPAGE);
 ---
 
-<PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
-  <Container>
-    <div class="space-y-8">
-      <section>
-        <article class="space-y-4">
-          <main class="animate py-1">
-            <div>
-               <h2 class="text-2xl">Noelia Miranda</h2>
-               <p class="text-lg dark:text-slate-200">I'm a software engineer based in Córdoba, Argentina who loves solving problems, tinkering with code, and learning new things. Right now, I'm building backend stuff at <a href="https://mercadolibre.com/">Mercado Libre</a>.</p>
-            </div>
-         </main>
-        </article>
-        <ul class="animate flex flex-wrap gap-2">
-          {SOCIALS.map(SOCIAL => (
-            <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
-              </Link>
-              {"/"}
-            </li>
-          ))}
-          <li class="line-clamp-1">
-            <Link href={`mailto:${SITE.EMAIL}`} aria-label={`Email ${SITE.NAME}`}>
-              {SITE.EMAIL}
-            </Link>
-          </li>
-        </ul>
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h5 class="font-semibold text-black dark:text-white">
-            Today I Learned
-          </h5>
-          <p class="text-gray-800 dark:text-slate-200">A collection of short posts on things I learn day to day about programming.</p>
-          <Link href="/til">
-            See all posts
-          </Link>
-        </div>
-        <ul class="flex flex-col gap-4">
-          {til.map(post => (
-            <li>
-              <ArrowCard entry={post} />
-            </li>
-          ))}
-        </ul>
-      </section>
+<Base>
+  <section class="hero">
+    <p class="label">hello, world. i'm</p>
+    <h1>Noelia Miranda</h1>
+    <p class="lead">
+      Software engineer from Córdoba, Argentina. 5 years building backend systems — currently at <a href="https://mercadolibre.com/">Mercado Libre</a>.
+      I like untangling messy problems and making things a bit simpler than I found them.
+    </p>
+    <div class="buttons">
+      {SOCIALS.map((social, i) => (
+        <a class:list={["btn", { default: i === 0 }]} href={social.HREF}>{social.NAME}</a>
+      ))}
     </div>
-  </Container>
-</PageLayout>
+  </section>
+
+  <SectionHeading title="Now" />
+  <div class="card">
+    <dl class="now">
+      {NOW.map(item => (
+        <>
+          <dt class="label">{item.LABEL}</dt>
+          <dd>{item.TEXT}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+
+  <SectionHeading title="Experience" />
+  <ul class="xp">
+    {EXPERIENCE.map(job => (
+      <li>
+        <span class="label">{job.WHEN}</span>
+        <div>
+          <div class="role">{job.ROLE}</div>
+          <p>{job.WHAT}</p>
+        </div>
+      </li>
+    ))}
+  </ul>
+
+  <SectionHeading title="Notes" link={{ href: "/notes/", label: "all notes →" }} />
+  <NoteList notes={notes} />
+</Base>
+
+<style>
+  .hero { padding: 64px 0 24px; }
+  .hero .label { margin: 0 0 4px; }
+  h1 { font: 600 44px/1.05 var(--pixel); margin: 0 0 12px; letter-spacing: .5px; }
+  .lead { margin: 0; max-width: 46ch; }
+  .buttons { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 22px; }
+
+  .now { display: grid; grid-template-columns: 120px 1fr; row-gap: 8px; margin: 0; }
+  .now dt { padding-top: 3px; }
+  .now dd { margin: 0; }
+
+  .xp { list-style: none; margin: 0; padding: 0; }
+  .xp li { display: grid; grid-template-columns: 120px 1fr; gap: 0 16px; padding: 14px 0; border-bottom: 1px dashed var(--fg); }
+  .xp li:last-child { border-bottom: 0; }
+  .xp .label { padding-top: 3px; }
+  .role { font: 600 16px var(--pixel); }
+  .xp p { color: var(--muted); margin: 2px 0 0; }
+
+  @media (max-width: 560px) {
+    .hero { padding-top: 40px; }
+    h1 { font-size: 36px; }
+    .now, .xp li { grid-template-columns: 1fr; }
+    .now dd + dt { margin-top: 6px; }
+  }
+</style>

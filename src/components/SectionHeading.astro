@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+  link?: { href: string; label: string };
+  as?: "h1" | "h2";
+}
+
+const { title, id, link, as: Tag = "h2" } = Astro.props;
+---
+
+<div class="heading" id={id}>
+  <Tag>{title}</Tag>
+  <div class="stripes" aria-hidden="true"></div>
+  {link && <a class="label" href={link.href}>{link.label}</a>}
+</div>
+
+<style>
+  .heading { display: flex; align-items: center; gap: 12px; margin: 48px 0 18px; }
+  .stripes { flex: 1; height: 11px; }
+  h1, h2 { font: 600 20px var(--pixel); margin: 0; white-space: nowrap; }
+  a { white-space: nowrap; }
+</style>

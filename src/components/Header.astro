@@ -1,24 +1,45 @@
 ---
-import Container from "@components/Container.astro";
-import Link from "@components/Link.astro";
-import { SITE } from "@consts";
-import { GoogleAnalytics } from 'astro-analytics';
+const path = Astro.url.pathname;
+const links = [
+  { href: "/", label: "home", active: path === "/" },
+  { href: "/notes/", label: "notes", active: path.startsWith("/notes") },
+];
 ---
 
 <header>
-  <GoogleAnalytics id="G-L7LP5MQ2L1" />
-  <Container>
-    <div class="flex flex-wrap gap-y-2 justify-between">
-      <Link href="/" underline={false}>
-        <div class="font-semibold">
-          {SITE.NAME}
-        </div>
-      </Link>
-      <nav class="flex gap-1">
-        <Link href="/til">
-          til
-        </Link>
-      </nav>
-    </div>
-  </Container>
+  <div class="wrap">
+    <a class="logo" href="/">noelia</a>
+    <nav aria-label="Main">
+      {links.map(link => (
+        <a href={link.href} aria-current={link.active ? "page" : undefined}>{link.label}</a>
+      ))}
+      <button class="toggle" id="invert" type="button" aria-pressed="false" title="Invert colors">invert</button>
+    </nav>
+  </div>
 </header>
+
+<script>
+  const root = document.documentElement;
+  const button = document.getElementById("invert")!;
+  const sync = () => button.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+  sync();
+  button.addEventListener("click", () => {
+    root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+    try { localStorage.setItem("theme", root.dataset.theme); } catch {}
+    sync();
+  });
+</script>
+
+<style>
+  header { border-bottom: 2px solid var(--fg); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+  .logo { font: 600 20px var(--pixel); text-decoration: none; letter-spacing: .5px; }
+  nav { display: flex; gap: 4px; align-items: center; }
+  nav a { font: 13px var(--label); text-decoration: none; padding: 2px 8px; }
+  nav a:hover, nav a[aria-current] { background: var(--fg); color: var(--bg); }
+  .toggle {
+    font: 13px var(--label); background: var(--bg); color: var(--fg); margin-left: 4px;
+    border: 2px solid var(--fg); border-radius: 6px; padding: 1px 8px; cursor: pointer;
+  }
+  .toggle:active { background: var(--fg); color: var(--bg); }
+</style>
