@@ -20,23 +20,22 @@ export const SOCIALS = [
   { NAME: "Email", HREF: `mailto:${SITE.EMAIL}` },
 ];
 
-// TODO: replace the [bracketed] placeholders before merging.
 export const NOW = [
-  { LABEL: "working on", TEXT: "Backend services at Mercado Libre — [what area / team?]" },
-  { LABEL: "learning", TEXT: "[e.g. how I'm folding AI tools into my day-to-day]" },
-  { LABEL: "reading", TEXT: "[a book you're into]" },
-  { LABEL: "away from keys", TEXT: "[a hobby or two]" },
+  { LABEL: "working on", TEXT: "Backend for returns at Mercado Envíos" },
+  { LABEL: "learning", TEXT: "How to hand the boring parts of my job to AI (and which parts not to)" },
+  { LABEL: "reading", TEXT: "Nothing — deep in a reading slump. Recommendations welcome." },
+  { LABEL: "away from keys", TEXT: "Finishing Silksong and counting down to the Ocarina of Time remake." },
 ];
 
 export const EXPERIENCE = [
   {
-    WHEN: "20XX — now",
+    WHEN: "2025 — now",
     ROLE: "Software Engineer · Mercado Libre",
-    WHAT: "[One line on what you build and one concrete thing you're proud of.]",
+    WHAT: "Building backend services in Go for Mercado Envíos' reverse logistics, and finding ways to make our day-to-day work simpler with AI.",
   },
   {
-    WHEN: "20XX — 20XX",
-    ROLE: "[Previous role · Company]",
-    WHAT: "[Short summary.]",
+    WHEN: "2021 — 2025",
+    ROLE: "Software Engineer · redbee Studios",
+    WHAT: "Built and maintained the transactional core of Payway's payment gateway.",
   },
 ];
