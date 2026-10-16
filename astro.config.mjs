@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://noeliamiranda.dev",
+  site: "https://www.noeliamiranda.dev",
   integrations: [sitemap()],
   // "Today I Learned" became "Notes": keep the old links working
   redirects: {
